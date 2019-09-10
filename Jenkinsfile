@@ -27,12 +27,12 @@ stage ( 'three' ){
 
 stage ( 'Four' ){
              parallel{
-               stage('Unit Test'){
+              stage('Unit Test'){
                     steps {
                              echo "Running the unit test...."
                              }
                    }
-             }
+             
               stage('Integration Test'){
                     agent {
                             docker {
@@ -48,9 +48,11 @@ stage ( 'Four' ){
                              echo "Running the unit test...."
                              }
                    }
+               }
              }
 }
 }
+
 
 
 
