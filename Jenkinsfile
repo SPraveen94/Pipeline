@@ -1,26 +1,57 @@
 pipeline {
   agent any
   stages {
-          stage ( 'Build'){
+          stage ( 'one'){
               steps{
-                    echo ' Build Phase'
+                    echo ' Hi this is Stage 1'
                    }
 
           }
-stage ( 'Test'){
+stage ( 'Two' ){
               steps{
-                    echo ' Test Phase'
+                    input( 'Do you want to prceed?' )
                    }
 
           }
-stage ( 'Deploy'){
+stage ( 'three' ){
+             when{
+               not{
+                    branch "master"
+                   }
+             }
               steps{
-                    echo ' Deploy Phase'
+                    echo ' Hello '
                    }
 
           }
 
+stage ( 'Four' ){
+             parallel{
+               stage('Unit Test'){
+                    steps{
+                             echo "Running the unit test...."
+                             }
+                   }
+             }
+              stage('Integration Test'){
+                    agent {
+                            docker {
+                                    reuseNode false
+                                    image 'ubuntu'
+                                  
+
+                                 }
 
 
-  }
+                      }
+                       steps{
+                             echo "Running the unit test...."
+                             }
+                   }
+             }
 }
+}
+}
+}
+}
+
