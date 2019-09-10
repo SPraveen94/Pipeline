@@ -28,7 +28,7 @@ stage ( 'three' ){
 stage ( 'Four' ){
              parallel{
                stage('Unit Test'){
-                    steps{
+                    steps {
                              echo "Running the unit test...."
                              }
                    }
@@ -44,7 +44,7 @@ stage ( 'Four' ){
 
 
                       }
-                       steps{
+                       steps {
                              echo "Running the unit test...."
                              }
                    }
